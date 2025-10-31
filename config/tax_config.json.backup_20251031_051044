@@ -1,0 +1,87 @@
+{
+  "$schema": "tax_config_schema",
+  "version": "1.0",
+  "description": "Configuração de impostos brasileiros - Sistema configurável para facilitar adaptação a mudanças legais",
+  "taxes": [
+    {
+      "id": "icms",
+      "name": "ICMS",
+      "full_name": "Imposto sobre Circulação de Mercadorias e Serviços",
+      "description": "Imposto estadual sobre circulação de mercadorias",
+      "xml_fields": ["vICMS", "vICMSST"],
+      "color": "#1f77b4",
+      "enabled": true,
+      "scope": "estadual",
+      "applies_to": ["NFe", "NFCe", "SAT"]
+    },
+    {
+      "id": "ipi",
+      "name": "IPI",
+      "full_name": "Imposto sobre Produtos Industrializados",
+      "description": "Imposto federal sobre produtos industrializados",
+      "xml_fields": ["vIPI"],
+      "color": "#ff7f0e",
+      "enabled": true,
+      "scope": "federal",
+      "applies_to": ["NFe"]
+    },
+    {
+      "id": "pis",
+      "name": "PIS",
+      "full_name": "Programa de Integração Social",
+      "description": "Contribuição federal para financiamento da seguridade social",
+      "xml_fields": ["vPIS"],
+      "color": "#2ca02c",
+      "enabled": true,
+      "scope": "federal",
+      "applies_to": ["NFe", "NFCe", "SAT"]
+    },
+    {
+      "id": "cofins",
+      "name": "COFINS",
+      "full_name": "Contribuição para o Financiamento da Seguridade Social",
+      "description": "Contribuição federal para financiamento da seguridade social",
+      "xml_fields": ["vCOFINS"],
+      "color": "#d62728",
+      "enabled": true,
+      "scope": "federal",
+      "applies_to": ["NFe", "NFCe", "SAT"]
+    },
+    {
+      "id": "iss",
+      "name": "ISS",
+      "full_name": "Imposto sobre Serviços",
+      "description": "Imposto municipal sobre prestação de serviços",
+      "xml_fields": ["vISS"],
+      "color": "#9467bd",
+      "enabled": true,
+      "scope": "municipal",
+      "applies_to": ["NFSe"]
+    }
+  ],
+  "future_taxes": {
+    "comment": "Para adicionar novos impostos (ex: IVA), copie um dos objetos acima e modifique os campos necessários",
+    "example_iva": {
+      "id": "iva",
+      "name": "IVA",
+      "full_name": "Imposto sobre Valor Agregado",
+      "description": "Novo imposto brasileiro que substituiria PIS/COFINS/IPI",
+      "xml_fields": ["vIVA"],
+      "color": "#8c564b",
+      "enabled": false,
+      "scope": "federal",
+      "applies_to": ["NFe", "NFCe", "SAT"]
+    }
+  },
+  "metadata": {
+    "last_updated": "2025-10-31",
+    "updated_by": "system",
+    "change_history": [
+      {
+        "date": "2025-10-31",
+        "change": "Configuração inicial com impostos brasileiros atuais",
+        "author": "agent"
+      }
+    ]
+  }
+}
