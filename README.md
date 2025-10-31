@@ -10,7 +10,7 @@
   <a href="https://nexafiscal-i2a2-saitosp.replit.app" target="_blank">
     <img src="https://img.shields.io/badge/🚀_Demo_Live-Acesse_Agora-FF5C28?style=for-the-badge" alt="Demo Live"/>
   </a>
-  <a href="https://replit.com/@saitosp/nexafiscal-i2a2?s=app" target="_blank">
+  <a href="https://fiscal-mind-saitosp.replit.app" target="_blank">
     <img src="https://img.shields.io/badge/💻_Código-Replit-667881?style=for-the-badge" alt="Ver no Replit"/>
   </a>
 </p>
