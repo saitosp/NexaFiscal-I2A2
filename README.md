@@ -4,8 +4,6 @@
 
 # 📄 NexaFiscal
 
-# 📄 NexaFiscal
-
 > **Extração inteligente, análise instantânea**
 
 <p align="center">
