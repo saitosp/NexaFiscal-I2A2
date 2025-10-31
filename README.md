@@ -4,15 +4,27 @@
 
 # 📄 NexaFiscal
 
+# 📄 NexaFiscal
+
 > **Extração inteligente, análise instantânea**
+
+<p align="center">
+  <a href="https://nexafiscal-i2a2-saitosp.replit.app" target="_blank">
+    <img src="https://img.shields.io/badge/🚀_Demo_Live-Acesse_Agora-FF5C28?style=for-the-badge" alt="Demo Live"/>
+  </a>
+  <a href="https://replit.com/@saitosp/nexafiscal-i2a2?s=app" target="_blank">
+    <img src="https://img.shields.io/badge/💻_Código-Replit-667881?style=for-the-badge" alt="Ver no Replit"/>
+  </a>
+</p>
 
 Sistema autônomo de agentes de IA para processamento e análise de documentos fiscais brasileiros (NFe, NFCe, SAT, CTe, NFSe).
 
-**[Demo Live no Replit]
+---
 
-(https://fiscal-mind-
+## 🚀 Acesso Rápido
 
-saitosp.replit.app)** - Acesse sistema funcionando!
+- **🌐 [Demo Live](https://nexafiscal-i2a2-saitosp.replit.app)** - Experimente o sistema funcionando (sem necessidade de login)
+- **💻 [Código no Replit](https://replit.com/@saitosp/nexafiscal-i2a2?s=app)** - Explore e execute o código-fonte
 
 </div>
 
