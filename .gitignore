@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Replit
+.upm/
+.cache/
+.config/
+.pythonlibs/
+replit.nix
+.replit
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads e dados temporários
+data/uploads/
+data/exports/
+data/*.xml
+data/*.pdf
+data/*.jpg
+data/*.jpeg
+data/*.png
+
+# Logs
+*.log
+logs/
+/tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets e configurações locais
+.env
+.env.local
+*.pem
+*.p12
+*.pfx
+
+# Checkpoints do LangGraph
+checkpoints/
+*.db-shm
+*.db-wal
