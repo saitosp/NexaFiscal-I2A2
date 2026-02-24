@@ -363,6 +363,30 @@ elif page == "📤 Upload e Processamento":
     )
     
     if uploaded_file:
+        # Preview do arquivo para feedback visual imediato
+        with st.expander("👁️ Pré-visualização do Arquivo", expanded=True):
+            try:
+                # Preview de Imagem
+                if uploaded_file.type.startswith('image'):
+                    st.image(uploaded_file, caption=f"Pré-visualização: {uploaded_file.name}", use_container_width=True)
+                    uploaded_file.seek(0)
+
+                # Preview de XML (primeiros 1000 caracteres)
+                elif uploaded_file.type == 'text/xml' or uploaded_file.name.lower().endswith('.xml'):
+                    uploaded_file.seek(0)
+                    content = uploaded_file.read(1000).decode('utf-8', errors='ignore')
+                    uploaded_file.seek(0)
+                    st.code(content + ("..." if len(content) == 1000 else ""), language='xml')
+
+                # Info para PDF
+                elif uploaded_file.type == 'application/pdf':
+                    st.info("📄 Pré-visualização de PDF não disponível (o conteúdo será extraído durante o processamento)")
+
+                else:
+                    st.info(f"📄 Arquivo carregado: {uploaded_file.name}")
+            except Exception as e:
+                st.warning(f"Não foi possível gerar pré-visualização: {str(e)}")
+
         col1, col2 = st.columns([3, 1])
         
         with col1:
