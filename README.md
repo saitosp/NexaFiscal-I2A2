@@ -5,7 +5,6 @@
 # 📄 NexaFiscal
 
 > **Extração inteligente, análise instantânea**
-> https://fiscal-mind-saitosp.replit.app
 
 Sistema autônomo de agentes de IA para processamento e análise de documentos fiscais brasileiros (NFe, NFCe, SAT, CTe, NFSe).
 
