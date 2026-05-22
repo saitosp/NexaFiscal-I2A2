@@ -1,6 +1,7 @@
 """
 Script para inicializar o banco de dados
 """
+
 from database.session import init_db
 
 if __name__ == "__main__":

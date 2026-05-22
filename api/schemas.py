@@ -1,6 +1,7 @@
 """
 Pydantic schemas for API requests and responses
 """
+
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 from pydantic import BaseModel
@@ -8,6 +9,7 @@ from pydantic import BaseModel
 
 class DocumentUploadResponse(BaseModel):
     """Response após upload de documento"""
+
     document_id: int
     filename: str
     status: str
@@ -16,6 +18,7 @@ class DocumentUploadResponse(BaseModel):
 
 class DocumentSummary(BaseModel):
     """Resumo de documento para listagens"""
+
     id: int
     filename: str
     document_type: Optional[str]
@@ -26,13 +29,14 @@ class DocumentSummary(BaseModel):
     has_errors: bool
     processing_status: str
     created_at: datetime
-    
+
     class Config:
         from_attributes = True
 
 
 class DocumentDetail(BaseModel):
     """Detalhes completos de um documento"""
+
     id: int
     filename: str
     file_type: Optional[str]
@@ -55,13 +59,14 @@ class DocumentDetail(BaseModel):
     processing_status: str
     created_at: datetime
     updated_at: datetime
-    
+
     class Config:
         from_attributes = True
 
 
 class AgentLogSummary(BaseModel):
     """Log de execução de agente"""
+
     id: int
     agent_name: str
     agent_status: Optional[str]
@@ -69,19 +74,21 @@ class AgentLogSummary(BaseModel):
     started_at: datetime
     completed_at: Optional[datetime]
     duration_seconds: Optional[float]
-    
+
     class Config:
         from_attributes = True
 
 
 class ChatSessionCreate(BaseModel):
     """Request para criar sessão de chat"""
+
     user_id: Optional[str] = "default"
     title: Optional[str] = None
 
 
 class ChatSessionResponse(BaseModel):
     """Response com dados da sessão de chat"""
+
     id: int
     session_id: str
     title: str
@@ -93,6 +100,7 @@ class ChatSessionResponse(BaseModel):
 
 class ChatMessageCreate(BaseModel):
     """Request para enviar mensagem"""
+
     session_id: str
     message: str
     uploaded_file_path: Optional[str] = None
@@ -101,6 +109,7 @@ class ChatMessageCreate(BaseModel):
 
 class ChatMessageResponse(BaseModel):
     """Response com mensagem e metadados"""
+
     message_id: Optional[int] = None
     role: str
     content: str
@@ -116,12 +125,14 @@ class ChatMessageResponse(BaseModel):
 
 class ChatHistoryResponse(BaseModel):
     """Response com histórico de mensagens"""
+
     session_id: str
     messages: List[Dict[str, Any]]
 
 
 class StatisticsResponse(BaseModel):
     """Estatísticas gerais do sistema"""
+
     total: int
     valid: int
     invalid: int
@@ -132,19 +143,21 @@ class StatisticsResponse(BaseModel):
 
 class ProcessingQueueItem(BaseModel):
     """Item da fila de processamento"""
+
     id: int
     batch_id: Optional[str]
     priority: int
     status: str
     scheduled_at: Optional[datetime]
     created_at: datetime
-    
+
     class Config:
         from_attributes = True
 
 
 class BatchStatusResponse(BaseModel):
     """Status de um lote de processamento"""
+
     batch_id: str
     total: int
     pending: int

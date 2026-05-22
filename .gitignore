@@ -60,3 +60,6 @@ Thumbs.db
 checkpoints/
 *.db-shm
 *.db-wal
+.venv/
+.ruff_cache/
+.pytest_cache/
