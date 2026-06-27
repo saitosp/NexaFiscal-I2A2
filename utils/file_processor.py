@@ -42,8 +42,8 @@ def process_xml(file_path: str) -> Dict[str, Any]:
         with open(file_path, 'r', encoding='utf-8') as f:
             xml_content = f.read()
         
-        # Parse XML to dict
-        data = xmltodict.parse(xml_content)
+        # Parse XML to dict with entities disabled to prevent XXE attacks
+        data = xmltodict.parse(xml_content, disable_entities=True)
         
         return {
             'success': True,
