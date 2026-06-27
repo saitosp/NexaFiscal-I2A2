@@ -24,11 +24,14 @@ class SefazService:
     """
     
     @staticmethod
-    def _get_encryption_key() -> bytes:
+    def _get_encryption_key(salt: bytes) -> bytes:
         """
         Obtém chave mestra para criptografia de certificados
         Deriva da variável de ambiente SEFAZ_CERT_MASTER_KEY
         
+        Args:
+            salt: Bytes aleatórios únicos para cada criptografia
+
         Raises:
             ValueError: Se SEFAZ_CERT_MASTER_KEY não estiver configurada
         """
@@ -44,7 +47,7 @@ class SefazService:
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
             length=32,
-            salt=b'sefaz-nfe-salt-2025',  # Salt fixo (em produção, usar salt por certificado)
+            salt=salt,
             iterations=100000,
             backend=default_backend()
         )
@@ -56,7 +59,9 @@ class SefazService:
         """
         Criptografa dados usando AES-256-GCM
         """
-        key = SefazService._get_encryption_key()
+        # Gera salt aleatório de 16 bytes
+        salt = os.urandom(16)
+        key = SefazService._get_encryption_key(salt)
         
         # Gera IV aleatório
         iv = os.urandom(16)
@@ -70,20 +75,21 @@ class SefazService:
         encryptor = cipher.encryptor()
         ciphertext = encryptor.update(data) + encryptor.finalize()
         
-        # Retorna IV + tag + ciphertext
-        return iv + encryptor.tag + ciphertext
+        # Retorna salt + IV + tag + ciphertext
+        return salt + iv + encryptor.tag + ciphertext
     
     @staticmethod
     def _decrypt_data(encrypted_data: bytes) -> bytes:
         """
         Descriptografa dados usando AES-256-GCM
         """
-        key = SefazService._get_encryption_key()
+        # Extrai salt, IV, tag e ciphertext
+        salt = encrypted_data[:16]
+        iv = encrypted_data[16:32]
+        tag = encrypted_data[32:48]
+        ciphertext = encrypted_data[48:]
         
-        # Extrai IV, tag e ciphertext
-        iv = encrypted_data[:16]
-        tag = encrypted_data[16:32]
-        ciphertext = encrypted_data[32:]
+        key = SefazService._get_encryption_key(salt)
         
         # Descriptografa
         cipher = Cipher(
@@ -168,7 +174,7 @@ class SefazService:
                 password_hash=password_hash,
                 expires_at=valid_until,
                 environment=environment,
-                metadata={
+                meta_info={
                     'subject': subject,
                     'issuer': issuer,
                     'valid_from': valid_from.isoformat(),
@@ -242,9 +248,9 @@ class SefazService:
                 'name': cred.name,
                 'environment': cred.environment,
                 'is_active': cred.is_active,
-                'valid_from': cred.metadata.get('valid_from') if cred.metadata else None,
-                'valid_until': cred.metadata.get('valid_until') if cred.metadata else None,
-                'subject': cred.metadata.get('subject') if cred.metadata else None,
+                'valid_from': cred.meta_info.get('valid_from') if cred.meta_info else None,
+                'valid_until': cred.meta_info.get('valid_until') if cred.meta_info else None,
+                'subject': cred.meta_info.get('subject') if cred.meta_info else None,
                 'created_at': cred.created_at.isoformat() if cred.created_at else None
             })
         
